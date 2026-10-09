@@ -1,0 +1,31 @@
+global:
+  env: dev
+  dockerUsername: kiransai006
+
+services:
+  orders:
+    name: orders-service
+    image: orders-service
+    tag: latest
+    replicas: 2
+    port: 8080
+    type: LoadBalancer
+    serviceMonitor: true
+
+  products:
+    name: products-service
+    image: products-service
+    tag: latest
+    replicas: 2
+    port: 8081
+    type: LoadBalancer
+    serviceMonitor: true
+
+  frontend:
+    name: frontend
+    image: omnishop-frontend
+    tag: latest
+    replicas: 2
+    port: 80
+    type: LoadBalancer
+    serviceMonitor: false
