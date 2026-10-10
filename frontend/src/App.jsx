@@ -56,8 +56,10 @@ function App() {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="main-wrapper">
         <Header title={activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} />
-        <main className="main-content-area">
-          {loading ? <div className="loader"></div> : renderContent()}
+        <main className="main-content-area" aria-busy={loading}>
+          {loading
+            ? <div className="loader" role="status" aria-label="Loading store overview" />
+            : renderContent()}
         </main>
       </div>
     </div>

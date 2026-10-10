@@ -16,6 +16,15 @@ const StatCard = ({ title, value, change, icon }) => (
 const Dashboard = ({ orderData, productData }) => {
     return (
         <div className="dashboard-view">
+            <section className="dashboard-intro">
+                <div>
+                    <p className="eyebrow">OVERVIEW</p>
+                    <h1>Store overview</h1>
+                    <p className="intro-copy">A quick look at your store performance and connected services.</p>
+                </div>
+                <div className="overview-note"><span aria-hidden="true">✦</span> Your business at a glance</div>
+            </section>
+
             <div className="stats-grid">
                 <StatCard title="Total Revenue" value="$45,231.89" change={20.1} icon="💰" />
                 <StatCard title="Active Orders" value="356" change={-5.4} icon="📦" />
@@ -23,27 +32,39 @@ const Dashboard = ({ orderData, productData }) => {
                 <StatCard title="System Status" value="Operational" change={0} icon="✅" />
             </div>
 
-            <div className="content-grid">
+            <section className="content-grid">
                 <div className="card service-status">
-                    <h3>Service Health</h3>
+                    <div className="card-heading">
+                        <div>
+                            <p className="eyebrow">PLATFORM</p>
+                            <h3>Service health</h3>
+                        </div>
+                        <span className="health-summary"><span aria-hidden="true" />Live checks</span>
+                    </div>
                     <div className="status-item">
-                        <span>Order Service</span>
+                        <div className="service-name">
+                            <span className="service-icon">📦</span>
+                            <div><span>Order service</span><small>Order processing and fulfillment</small></div>
+                        </div>
                         <span className={`status-badge ${orderData ? 'active' : 'inactive'}`}>
                             {orderData ? 'Online' : 'Offline'}
                         </span>
                     </div>
                     <div className="status-item">
-                        <span>Product Service</span>
+                        <div className="service-name">
+                            <span className="service-icon">🏷️</span>
+                            <div><span>Product service</span><small>Catalog and inventory updates</small></div>
+                        </div>
                         <span className={`status-badge ${productData ? 'active' : 'inactive'}`}>
                             {productData ? 'Online' : 'Offline'}
                         </span>
                     </div>
                     <div className="message-box">
-                        <p><strong>Order Service Message:</strong> {orderData?.message || 'No data'}</p>
-                        <p><strong>Product Service Message:</strong> {productData?.message || 'No data'}</p>
+                        <p><strong>Order service:</strong> {orderData?.message || 'No data available'}</p>
+                        <p><strong>Product service:</strong> {productData?.message || 'No data available'}</p>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };
