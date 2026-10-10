@@ -35,6 +35,11 @@ Then open:
 - Orders API: http://localhost:8080/api/orders
 - Products API: http://localhost:8081/api/products
 
+- Grafana (dashboards): http://localhost:3001 (login `admin` / `admin`, local demo only)
+- Prometheus: http://localhost:9090 (check **Status → Targets**)
+
+The `loadgen` container sends light synthetic traffic so the dashboards show live data.
+
 Stop with `Ctrl+C`, then `docker compose down`.
 
 > **Known limitations:** the Terraform/EKS, ArgoCD and monitoring parts need your own AWS account, GitHub secrets and an installed ArgoCD, so they are not runnable out of the box. The services use in-memory sample data (no database).

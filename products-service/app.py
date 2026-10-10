@@ -1,21 +1,6 @@
 from flask import Flask, jsonify
-
-try:
-    from flask_cors import CORS
-except ImportError:  # pragma: no cover - fallback for minimal environments
-    class CORS:  # type: ignore[no-redef]
-        def __init__(self, *args, **kwargs):
-            pass
-
-try:
-    from prometheus_flask_exporter import PrometheusMetrics
-except ImportError:  # pragma: no cover - fallback for minimal environments
-    class PrometheusMetrics:  # type: ignore[no-redef]
-        def __init__(self, *args, **kwargs):
-            pass
-
-        def info(self, *args, **kwargs):
-            pass
+from flask_cors import CORS
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 CORS(app)
