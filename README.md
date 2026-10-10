@@ -21,6 +21,26 @@
 
 ---
 
+## ⚡ Run Locally (2 minutes, no AWS needed)
+
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+```bash
+docker compose up --build
+```
+
+Then open:
+
+- Frontend: http://localhost:3000
+- Orders API: http://localhost:8080/api/orders
+- Products API: http://localhost:8081/api/products
+
+Stop with `Ctrl+C`, then `docker compose down`.
+
+> **Known limitations:** the Terraform/EKS, ArgoCD and monitoring parts need your own AWS account, GitHub secrets and an installed ArgoCD, so they are not runnable out of the box. The services use in-memory sample data (no database).
+
+---
+
 ## 🎯 Overview
 
 OmniShop is a microservices-based e-commerce platform consisting of:

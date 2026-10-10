@@ -19,9 +19,8 @@ function App() {
         // We'll try to fetch, but if it fails we'll just show the dashboard without live data
         // or with mock data if needed.
         const [ordersRes, productsRes] = await Promise.allSettled([
-          axios.get('http://a4d3a58d9e69b48a88e5542dc3736b7e-1901851160.us-east-1.elb.amazonaws.com'),
-          // Placeholder for products service until exposed
-          axios.get('http://localhost:8081/')
+          axios.get('/svc/orders'),
+          axios.get('/svc/products')
         ])
 
         if (ordersRes.status === 'fulfilled') setOrderData(ordersRes.value.data)

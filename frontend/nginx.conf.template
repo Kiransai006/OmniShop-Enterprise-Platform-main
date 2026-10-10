@@ -1,0 +1,28 @@
+server {
+    listen 80;
+
+    # Backend services. ORDERS_URL / PRODUCTS_URL are set as environment
+    # variables (defaults in the Dockerfile suit Kubernetes; docker-compose
+    # overrides them).
+    location /api/orders {
+        proxy_pass ${ORDERS_URL};
+    }
+
+    location /api/products {
+        proxy_pass ${PRODUCTS_URL};
+    }
+
+    location = /svc/orders {
+        proxy_pass ${ORDERS_URL}/;
+    }
+
+    location = /svc/products {
+        proxy_pass ${PRODUCTS_URL}/;
+    }
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+}
