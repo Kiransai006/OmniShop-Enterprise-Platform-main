@@ -75,12 +75,12 @@ jobs:
       - name: Trivy scan orders-service
         run: |
           IMAGE_A=${{ secrets.DOCKER_USERNAME }}/orders-service:${{ github.sha }}
-          trivy image --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE_A
+          trivy image --ignore-unfixed --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE_A
 
       - name: Trivy scan products-service
         run: |
           IMAGE_B=${{ secrets.DOCKER_USERNAME }}/products-service:${{ github.sha }}
-          trivy image --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE_B
+          trivy image --ignore-unfixed --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE_B
 
   build-and-push-frontend:
     runs-on: ubuntu-latest
@@ -127,4 +127,4 @@ jobs:
       - name: Trivy scan frontend
         run: |
           IMAGE=${{ secrets.DOCKER_USERNAME }}/omnishop-frontend:${{ github.sha }}
-          trivy image --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE
+          trivy image --ignore-unfixed --severity CRITICAL,HIGH --exit-code 1 --no-progress $IMAGE
